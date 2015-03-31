@@ -1,5 +1,7 @@
 require 'xmlrpc/client'
 
+# Simple
+
 # Make an object to represent the XML-RPC server.
 server = XMLRPC::Client.new( 'localhost', '/', 8080)
 
@@ -14,3 +16,11 @@ sum = result['sum']
 difference = result['difference']
 
 puts "Sum: #{sum}, Difference: #{difference}"
+
+# Complex
+
+game_name = 'testgame'
+# TODO marshallable, require class
+game_server = server.proxy(game_name)
+
+puts game_server.place_token(1, 1, :T)
